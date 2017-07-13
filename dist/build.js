@@ -10548,7 +10548,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\SWDTOOLS\\workspace-neo\\address-lookup\\src\\App.vue"
+Component.options.__file = "C:\\Users\\44016417\\git\\address\\src\\App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -10559,9 +10559,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3ab52cc8", Component.options)
+    hotAPI.createRecord("data-v-481de19d", Component.options)
   } else {
-    hotAPI.reload("data-v-3ab52cc8", Component.options)
+    hotAPI.reload("data-v-481de19d", Component.options)
   }
 })()}
 
@@ -21956,6 +21956,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -24669,7 +24674,7 @@ exports = module.exports = __webpack_require__(2)(true);
 
 
 // module
-exports.push([module.i, "\nbody {\r\n\tpadding-top: 100px;\n}\n.non-float {\r\n\tfloat: none !important;\n}\r\n", "", {"version":3,"sources":["C:/SWDTOOLS/workspace-neo/address-lookup/src/App.vue?b78f2a80"],"names":[],"mappings":";AA+EA;CACA,mBAAA;CACA;AAEA;CACA,uBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n<div id=\"app\">\r\n\t<div class=\"row\">\r\n\t\t<!-- <div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Country</h1>\r\n\t\t\t<select class=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Address</h1>\r\n\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\tplaceholder=\"Start typing\" country=\"hk\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t</div> -->\r\n\t\t<form class=\"col-sm-8 center-block non-float\" autocomplete=\"off\">\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"country\" class=\"control-label\">Country</label> \r\n\t\t\t\t<select\r\n\t\t\t\t\tclass=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t\t<option value=\"hk\" selected>Hong Kong</option>\r\n\t\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"address\" class=\"control-label\">Address</label>\r\n\t\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" types=\"establishment\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div id=\"result\">{{ address }}</div>\r\n\r\n\t\t</form>\r\n\r\n\t</div>\r\n\r\n</div>\r\n\r\n</template>\r\n<script>\r\nimport config from './javascripts/config.js';\r\nimport VueGoogleAutocomplete from './components/VueGoogleAutocomplete.vue';\r\n\r\nexport default {\r\n    \r\n    data () {\r\n\t\treturn {\r\n\t    \tcountry: null,\r\n\t    \taddress: null,\r\n\t    \tresult: null,\r\n\t    \taddress: ''\r\n\t    }\r\n\t},\r\n\tcomponents: {\r\n\t    VueGoogleAutocomplete\r\n  \t},\r\n\r\n    methods: {\r\n        /**\r\n        * When the location found\r\n        * @param {Object} addressData Data of the found location\r\n        * @param {Object} placeResultData PlaceResult object\r\n        */\r\n        getAddressData: function (addressData, placeResultData) {\r\n            this.address = addressData;\r\n        },\r\n        \r\n    }\r\n\r\n\r\n}\r\n\r\n</script>\r\n<style>\r\nbody {\r\n\tpadding-top: 100px;\r\n}\r\n\r\n.non-float {\r\n\tfloat: none !important;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "\nbody {\r\n\tpadding-top: 100px;\n}\n.non-float {\r\n\tfloat: none !important;\n}\r\n", "", {"version":3,"sources":["C:/Users/44016417/git/address/src/App.vue?80f07ac4"],"names":[],"mappings":";AAoFA;CACA,mBAAA;CACA;AAEA;CACA,uBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n<div id=\"app\">\r\n\t<div class=\"row\">\r\n\t\t<!-- <div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Country</h1>\r\n\t\t\t<select class=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Address</h1>\r\n\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\tplaceholder=\"Start typing\" country=\"hk\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t</div> -->\r\n\t\t<form class=\"col-sm-8 center-block non-float\" autocomplete=\"off\">\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"country\" class=\"control-label\">Country</label> \r\n\t\t\t\t<select\r\n\t\t\t\t\tclass=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t\t<option value=\"hk\" selected>Hong Kong</option>\r\n\t\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"address\" class=\"control-label\">Address</label>\r\n\t\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" types=\"establishment\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div id=\"result\">\r\n\t\t\t\t<pre>\r\n\t\t\t\tCountry: {{address.country}}\r\n\t\t\t\t</pre>\r\n\t\t\t</div>\r\n\t\t\t<div id=\"result\">{{ address }}</div>\r\n\r\n\t\t</form>\r\n\r\n\t</div>\r\n\r\n</div>\r\n\r\n</template>\r\n<script>\r\nimport config from './javascripts/config.js';\r\nimport VueGoogleAutocomplete from './components/VueGoogleAutocomplete.vue';\r\n\r\nexport default {\r\n    \r\n    data () {\r\n\t\treturn {\r\n\t    \tcountry: null,\r\n\t    \taddress: null,\r\n\t    \tresult: null,\r\n\t    \taddress: ''\r\n\t    }\r\n\t},\r\n\tcomponents: {\r\n\t    VueGoogleAutocomplete\r\n  \t},\r\n\r\n    methods: {\r\n        /**\r\n        * When the location found\r\n        * @param {Object} addressData Data of the found location\r\n        * @param {Object} placeResultData PlaceResult object\r\n        */\r\n        getAddressData: function (addressData, placeResultData) {\r\n            this.address = addressData;\r\n        },\r\n        \r\n    }\r\n\r\n\r\n}\r\n\r\n</script>\r\n<style>\r\nbody {\r\n\tpadding-top: 100px;\r\n}\r\n\r\n.non-float {\r\n\tfloat: none !important;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -25356,7 +25361,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\SWDTOOLS\\workspace-neo\\address-lookup\\src\\components\\VueGoogleAutocomplete.vue"
+Component.options.__file = "C:\\Users\\44016417\\git\\address\\src\\components\\VueGoogleAutocomplete.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VueGoogleAutocomplete.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -25367,9 +25372,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-dec79852", Component.options)
+    hotAPI.createRecord("data-v-548acb22", Component.options)
   } else {
-    hotAPI.reload("data-v-dec79852", Component.options)
+    hotAPI.reload("data-v-548acb22", Component.options)
   }
 })()}
 
@@ -25455,13 +25460,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "result"
     }
+  }, [_c('pre', [_vm._v("\r\n\t\t\t\tCountry: " + _vm._s(_vm.address.country) + "\r\n\t\t\t\t")])]), _vm._v(" "), _c('div', {
+    attrs: {
+      "id": "result"
+    }
   }, [_vm._v(_vm._s(_vm.address))])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3ab52cc8", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-481de19d", module.exports)
   }
 }
 
@@ -25507,7 +25516,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-dec79852", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-548acb22", module.exports)
   }
 }
 
@@ -25522,13 +25531,13 @@ var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(38)("1cb63d34", content, false);
+var update = __webpack_require__(38)("54e0878a", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3ab52cc8\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./App.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3ab52cc8\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./App.vue");
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-481de19d\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./App.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-481de19d\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./App.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
