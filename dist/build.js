@@ -21955,6 +21955,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -21980,11 +21981,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         */
         getAddressData: function getAddressData(addressData, placeResultData) {
             this.address = addressData;
-        },
-        test: function test() {
-            var tmp = "test";
-            console.log("test");
         }
+
     }
 
 });
@@ -24671,7 +24669,7 @@ exports = module.exports = __webpack_require__(2)(true);
 
 
 // module
-exports.push([module.i, "\nbody {\r\n\tpadding-top: 100px;\n}\n.non-float {\r\n\tfloat: none !important;\n}\r\n", "", {"version":3,"sources":["C:/SWDTOOLS/workspace-neo/address-lookup/src/App.vue?71d4c902"],"names":[],"mappings":";AAiFA;CACA,mBAAA;CACA;AAEA;CACA,uBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n<div id=\"app\">\r\n\t<div class=\"row\">\r\n\t\t<!-- <div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Country</h1>\r\n\t\t\t<select class=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Address</h1>\r\n\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\tplaceholder=\"Start typing\" country=\"hk\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t</div> -->\r\n\t\t<form class=\"col-sm-8 center-block non-float\" autocomplete=\"off\">\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"country\" class=\"control-label\">Country</label> <select\r\n\t\t\t\t\tclass=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"address\" class=\"control-label\">Address</label>\r\n\t\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:placeholder=\"country\" :country=\"country\" types=\"establishment\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t\t</div>\r\n\t\t\t<button type=\"button\" class=\"btn btn-primary\" v-on:click.prevent=\"test\">Test</button>\r\n\t\t\t<div id=\"result\">{{ address }}</div>\r\n\r\n\t\t</form>\r\n\r\n\t</div>\r\n\r\n</div>\r\n\r\n</template>\r\n<script>\r\nimport config from './javascripts/config.js';\r\nimport VueGoogleAutocomplete from './components/VueGoogleAutocomplete.vue';\r\n\r\nexport default {\r\n    \r\n    data () {\r\n\t\treturn {\r\n\t    \tcountry: null,\r\n\t    \taddress: null,\r\n\t    \tresult: null,\r\n\t    \taddress: ''\r\n\t    }\r\n\t},\r\n\tcomponents: {\r\n\t    VueGoogleAutocomplete\r\n  \t},\r\n\r\n    methods: {\r\n        /**\r\n        * When the location found\r\n        * @param {Object} addressData Data of the found location\r\n        * @param {Object} placeResultData PlaceResult object\r\n        */\r\n        getAddressData: function (addressData, placeResultData) {\r\n            this.address = addressData;\r\n        },\r\n        test: function() {\r\n            let tmp = \"test\";\r\n            console.log(\"test\");\r\n        }\r\n    }\r\n\r\n\r\n}\r\n\r\n</script>\r\n<style>\r\nbody {\r\n\tpadding-top: 100px;\r\n}\r\n\r\n.non-float {\r\n\tfloat: none !important;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "\nbody {\r\n\tpadding-top: 100px;\n}\n.non-float {\r\n\tfloat: none !important;\n}\r\n", "", {"version":3,"sources":["C:/SWDTOOLS/workspace-neo/address-lookup/src/App.vue?b78f2a80"],"names":[],"mappings":";AA+EA;CACA,mBAAA;CACA;AAEA;CACA,uBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n<div id=\"app\">\r\n\t<div class=\"row\">\r\n\t\t<!-- <div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Country</h1>\r\n\t\t\t<select class=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Address</h1>\r\n\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\tplaceholder=\"Start typing\" country=\"hk\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t</div> -->\r\n\t\t<form class=\"col-sm-8 center-block non-float\" autocomplete=\"off\">\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"country\" class=\"control-label\">Country</label> \r\n\t\t\t\t<select\r\n\t\t\t\t\tclass=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t\t<option value=\"hk\" selected>Hong Kong</option>\r\n\t\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"address\" class=\"control-label\">Address</label>\r\n\t\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" types=\"establishment\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div id=\"result\">{{ address }}</div>\r\n\r\n\t\t</form>\r\n\r\n\t</div>\r\n\r\n</div>\r\n\r\n</template>\r\n<script>\r\nimport config from './javascripts/config.js';\r\nimport VueGoogleAutocomplete from './components/VueGoogleAutocomplete.vue';\r\n\r\nexport default {\r\n    \r\n    data () {\r\n\t\treturn {\r\n\t    \tcountry: null,\r\n\t    \taddress: null,\r\n\t    \tresult: null,\r\n\t    \taddress: ''\r\n\t    }\r\n\t},\r\n\tcomponents: {\r\n\t    VueGoogleAutocomplete\r\n  \t},\r\n\r\n    methods: {\r\n        /**\r\n        * When the location found\r\n        * @param {Object} addressData Data of the found location\r\n        * @param {Object} placeResultData PlaceResult object\r\n        */\r\n        getAddressData: function (addressData, placeResultData) {\r\n            this.address = addressData;\r\n        },\r\n        \r\n    }\r\n\r\n\r\n}\r\n\r\n</script>\r\n<style>\r\nbody {\r\n\tpadding-top: 100px;\r\n}\r\n\r\n.non-float {\r\n\tfloat: none !important;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -25425,7 +25423,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('option', {
     attrs: {
-      "value": "hk"
+      "value": "hk",
+      "selected": ""
     }
   }, [_vm._v("Hong Kong")]), _vm._v(" "), _c('option', {
     attrs: {
@@ -25446,25 +25445,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "map",
       "classname": "form-control",
-      "placeholder": _vm.country,
       "country": _vm.country,
       "types": "establishment"
     },
     on: {
       "placechanged": _vm.getAddressData
     }
-  })], 1), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.test($event)
-      }
-    }
-  }, [_vm._v("Test")]), _vm._v(" "), _c('div', {
+  })], 1), _vm._v(" "), _c('div', {
     attrs: {
       "id": "result"
     }
