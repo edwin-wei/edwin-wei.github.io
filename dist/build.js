@@ -22042,7 +22042,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     types: {
       type: String,
-      default: 'address'
+      default: null
     },
 
     country: {
@@ -22083,8 +22083,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
-    var options = {
-      types: [this.types]
+    var options = {};
+    if (this.types) {
+      options.types = [this.types];
     };
 
     if (this.country) {
