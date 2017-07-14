@@ -21968,6 +21968,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -21977,6 +21987,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var _ref;
 
         return _ref = {
+            language: null,
             country: null,
             address: null,
             result: null
@@ -22053,6 +22064,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     enableGeolocation: {
       type: Boolean,
       default: false
+    },
+
+    language: {
+      type: String,
+      default: 'en'
     }
   },
 
@@ -22098,44 +22114,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     this.autocomplete.addListener('place_changed', function () {
 
-      var place = _this.autocomplete.getPlace();
+      var place1 = _this.autocomplete.getPlace();
 
-      if (!place.geometry) {
+      if (!place1.geometry) {
         // User entered the name of a Place that was not suggested and
         // pressed the Enter key, or the Place Details request failed.
-        _this.$emit('no-results-found', place);
+        _this.$emit('no-results-found', place1);
         return;
       }
 
-      var addressComponents = {
-        street_number: 'short_name',
-        route: 'long_name',
-        neighborhood: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
+      var params = {
+        key: 'AIzaSyCe1exctmeJjIb4guyT6newSpyJ7kA3aLc',
+        placeid: place1.place_id,
+        language: _this.language
       };
+      _this.$http.get('https://maps.googleapis.com/maps/api/place/details/json', { params: params }).then(function (response) {
 
-      var returnData = {};
+        var place = response.body.result;
+        var addressComponents = {
+          street_number: 'short_name',
+          route: 'long_name',
+          neighborhood: 'long_name',
+          administrative_area_level_1: 'short_name',
+          country: 'long_name',
+          postal_code: 'short_name'
+        };
 
-      if (place.address_components !== undefined) {
-        // Get each component of the address from the place details
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
+        var returnData = {};
 
-          if (addressComponents[addressType]) {
-            var val = place.address_components[i][addressComponents[addressType]];
-            returnData[addressType] = val;
+        if (place.address_components !== undefined) {
+          // Get each component of the address from the place details
+          for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];
+
+            if (addressComponents[addressType]) {
+              var val = place.address_components[i][addressComponents[addressType]];
+              returnData[addressType] = val;
+            }
           }
+
+          returnData['latitude'] = place.geometry.location.lat;
+          returnData['longitude'] = place.geometry.location.lng;
+          returnData['name'] = place.name;
+
+          // return returnData object and PlaceResult object
+          _this.$emit('placechanged', returnData, place);
         }
-
-        returnData['latitude'] = place.geometry.location.lat();
-        returnData['longitude'] = place.geometry.location.lng();
-        returnData['name'] = place.name;
-
-        // return returnData object and PlaceResult object
-        _this.$emit('placechanged', returnData, place);
-      }
+      });
     });
   },
 
@@ -24686,7 +24711,7 @@ exports = module.exports = __webpack_require__(2)(true);
 
 
 // module
-exports.push([module.i, "\nbody {\r\n\tpadding-top: 100px;\n}\n.non-float {\r\n\tfloat: none !important;\n}\npre {\r\n    text-align: left;\r\n    white-space: pre-line;\n}\r\n\r\n", "", {"version":3,"sources":["C:/Users/44016417/git/address/src/App.vue?1d50ab1a"],"names":[],"mappings":";AA6FA;CACA,mBAAA;CACA;AAEA;CACA,uBAAA;CACA;AAEA;IACA,iBAAA;IACA,sBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n<div id=\"app\">\r\n\t<div class=\"row\">\r\n\t\t<!-- <div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Country</h1>\r\n\t\t\t<select class=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Address</h1>\r\n\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\tplaceholder=\"Start typing\" country=\"hk\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t</div> -->\r\n\t\t<form class=\"col-sm-8 center-block non-float\" autocomplete=\"off\">\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"country\" class=\"control-label\">Country</label> \r\n\t\t\t\t<select\r\n\t\t\t\t\tclass=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t\t<option value=\"hk\" selected>Hong Kong</option>\r\n\t\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"address\" class=\"control-label\">Address</label>\r\n\t\t\t\t<!-- <vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" types=\"establishment\" v-on:placechanged=\"getAddressData\"> -->\r\n\t\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div id=\"result\" v-if=\"address\">\r\n\t\t\t\t<pre>\r\n\t\t\t\tName: \t{{address.name}}\r\n\t\t\t\tStreet:  No. {{address.street_number}}, {{address.route}}\r\n\t\t\t\tDistrict:\t{{address.neighborhood}}\r\n\t\t\t\tArea:\t {{address.administrative_area_level_1}}\r\n\t\t\t\tCountry: {{address.country}}\r\n\t\t\t\t</pre>\r\n\t\t\t</div>\r\n\t\t\t<div id=\"detailed-result\" hidden>{{ address }}</div>\r\n\t\t\t<div id=\"raw-result\" hidden>{{ detailedAddress }}</div>\r\n\r\n\t\t</form>\r\n\r\n\t</div>\r\n\r\n</div>\r\n\r\n</template>\r\n<script>\r\nimport config from './javascripts/config.js';\r\nimport VueGoogleAutocomplete from './components/VueGoogleAutocomplete.vue';\r\n\r\nexport default {\r\n    \r\n    data () {\r\n\t\treturn {\r\n\t    \tcountry: null,\r\n\t    \taddress: null,\r\n\t    \tresult: null,\r\n\t    \taddress: null,\r\n\t    \tdetailedAddress: null,\r\n\t    }\r\n\t},\r\n\tcomponents: {\r\n\t    VueGoogleAutocomplete\r\n  \t},\r\n\r\n    methods: {\r\n        /**\r\n        * When the location found\r\n        * @param {Object} addressData Data of the found location\r\n        * @param {Object} placeResultData PlaceResult object\r\n        */\r\n        getAddressData: function (addressData, placeResultData) {\r\n            this.address = addressData;\r\n            this.detailedAddress = placeResultData;\r\n        },\r\n        \r\n    }\r\n\r\n\r\n}\r\n\r\n</script>\r\n<style>\r\nbody {\r\n\tpadding-top: 100px;\r\n}\r\n\r\n.non-float {\r\n\tfloat: none !important;\r\n}\r\n\r\n pre {\r\n    text-align: left;\r\n    white-space: pre-line;\r\n  }\r\n\r\n</style>\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "\nbody {\r\n\tpadding-top: 100px;\n}\n.non-float {\r\n\tfloat: none !important;\n}\npre {\r\n    text-align: left;\r\n    white-space: pre-line;\n}\r\n\r\n", "", {"version":3,"sources":["C:/Users/44016417/git/address/src/App.vue?7fe368c2"],"names":[],"mappings":";AAwGA;CACA,mBAAA;CACA;AAEA;CACA,uBAAA;CACA;AAEA;IACA,iBAAA;IACA,sBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n<div id=\"app\">\r\n\t<div class=\"row\">\r\n\t\t<!-- <div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Country</h1>\r\n\t\t\t<select class=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t<option value=\"hk\">Hong Kong</option>\r\n\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-8 center-block non-float\">\r\n\t\t\t<h1>Address</h1>\r\n\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\tplaceholder=\"Start typing\" country=\"hk\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t</div> -->\r\n\t\t<form class=\"col-sm-8 center-block non-float\" autocomplete=\"off\">\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"language\" class=\"control-label\">Language</label> \r\n\t\t\t\t<select\r\n\t\t\t\t\tclass=\"form-control\" id=\"language\" v-model=\"language\">\r\n\t\t\t\t\t<option value=\"en\" selected>English</option>\r\n\t\t\t\t\t<option value=\"zh-TW\">繁體中文</option>\r\n\t\t\t\t\t<option value=\"zh-CN\">简体中文</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"country\" class=\"control-label\">Country</label> \r\n\t\t\t\t<select\r\n\t\t\t\t\tclass=\"form-control\" id=\"country\" v-model=\"country\">\r\n\t\t\t\t\t<option value=\"hk\" selected>Hong Kong</option>\r\n\t\t\t\t\t<option value=\"cn\">China</option>\r\n\t\t\t\t\t<option value=\"us\">US</option>\r\n\t\t\t\t</select>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"address\" class=\"control-label\">Address</label>\r\n\t\t\t\t<!-- <vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" types=\"establishment\" v-on:placechanged=\"getAddressData\"> -->\r\n\t\t\t\t<vue-google-autocomplete id=\"map\" classname=\"form-control\"\r\n\t\t\t\t\t:country=\"country\" :language=\"language\" v-on:placechanged=\"getAddressData\">\r\n\t\t\t</vue-google-autocomplete>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div id=\"result\" v-if=\"address\">\r\n\t\t\t\t<pre>\r\n\t\t\t\tName: \t{{address.name}}\r\n\t\t\t\tStreet:  No. {{address.street_number}}, {{address.route}}\r\n\t\t\t\tDistrict:\t{{address.neighborhood}}\r\n\t\t\t\tArea:\t {{address.administrative_area_level_1}}\r\n\t\t\t\tCountry: {{address.country}}\r\n\t\t\t\t</pre>\r\n\t\t\t</div>\r\n\t\t\t<div id=\"detailed-result\" hidden>{{ address }}</div>\r\n\t\t\t<div id=\"raw-result\" hidden>{{ detailedAddress }}</div>\r\n\r\n\t\t</form>\r\n\r\n\t</div>\r\n\r\n</div>\r\n\r\n</template>\r\n<script>\r\nimport config from './javascripts/config.js';\r\nimport VueGoogleAutocomplete from './components/VueGoogleAutocomplete.vue';\r\n\r\nexport default {\r\n    \r\n    data () {\r\n\t\treturn {\r\n\t\t\tlanguage: null,\t\t    \r\n\t    \tcountry: null,\r\n\t    \taddress: null,\r\n\t    \tresult: null,\r\n\t    \taddress: null,\r\n\t    \tdetailedAddress: null,\r\n\t    }\r\n\t},\r\n\tcomponents: {\r\n\t    VueGoogleAutocomplete\r\n  \t},\r\n\r\n    methods: {\r\n        /**\r\n        * When the location found\r\n        * @param {Object} addressData Data of the found location\r\n        * @param {Object} placeResultData PlaceResult object\r\n        */\r\n        getAddressData: function (addressData, placeResultData) {\r\n            this.address = addressData;\r\n            this.detailedAddress = placeResultData;\r\n        },\r\n        \r\n    }\r\n\r\n\r\n}\r\n\r\n</script>\r\n<style>\r\nbody {\r\n\tpadding-top: 100px;\r\n}\r\n\r\n.non-float {\r\n\tfloat: none !important;\r\n}\r\n\r\n pre {\r\n    text-align: left;\r\n    white-space: pre-line;\r\n  }\r\n\r\n</style>\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -25414,6 +25439,48 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "control-label",
     attrs: {
+      "for": "language"
+    }
+  }, [_vm._v("Language")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.language),
+      expression: "language"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "language"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.language = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "en",
+      "selected": ""
+    }
+  }, [_vm._v("English")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "zh-TW"
+    }
+  }, [_vm._v("繁體中文")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "zh-CN"
+    }
+  }, [_vm._v("简体中文")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label",
+    attrs: {
       "for": "country"
     }
   }, [_vm._v("Country")]), _vm._v(" "), _c('select', {
@@ -25462,7 +25529,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "map",
       "classname": "form-control",
-      "country": _vm.country
+      "country": _vm.country,
+      "language": _vm.language
     },
     on: {
       "placechanged": _vm.getAddressData
