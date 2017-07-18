@@ -22367,7 +22367,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         placeid: place1.place_id,
         language: _this2.language
       };
-      _this2.$http.get('https://maps.googleapis.com/maps/api/place/details/json', { params: params }).then(function (response) {
+      var headers = {
+        'Access-Control-Allow-Origin': '*'
+      };
+      _this2.$http.get('https://maps.googleapis.com/maps/api/place/details/json', { params: params, headers: headers }).then(function (response) {
 
         var place = response.body.result;
         var returnData = _this2.getReturnData(place);
