@@ -22350,35 +22350,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
 
     this.autocomplete = new google.maps.places.Autocomplete(document.getElementById(this.id), options);
+    this.placeService = new google.maps.places.PlacesService(document.getElementById(this.id));
 
     this.autocomplete.addListener('place_changed', function () {
 
-      var place1 = _this2.autocomplete.getPlace();
+      var place = _this2.autocomplete.getPlace();
 
-      if (!place1.geometry) {
+      if (!place.geometry) {
         // User entered the name of a Place that was not suggested and
         // pressed the Enter key, or the Place Details request failed.
         _this2.$emit('no-results-found', place1);
         return;
       }
 
-      var params = {
-        key: 'AIzaSyAsIb2Avx-pwZTllY2IyZ2yMIiolO9Hobw',
-        placeid: place1.place_id,
-        language: _this2.language
-      };
-      var headers = {
-        'Access-Control-Allow-Origin': '*'
-      };
-      _this2.$http.get('https://maps.googleapis.com/maps/api/place/details/json', { params: params, headers: headers }).then(function (response) {
-
-        var place = response.body.result;
-        var returnData = _this2.getReturnData(place);
-        // return returnData object and PlaceResult object
-        if (returnData) {
-          _this2.$emit('placechanged', returnData, place);
-        }
-      });
+      var returnData = _this2.getReturnData(place);
+      if (returnData) {
+        _this2.$emit('placechanged', returnData, place);
+      }
+      /*let params = {
+              key:'AIzaSyAsIb2Avx-pwZTllY2IyZ2yMIiolO9Hobw',
+              placeid: place1.place_id,
+              language: this.language
+      }
+      this.$http.get('https://maps.googleapis.com/maps/api/place/details/json', {params: params}).then (response => {
+          
+          let place = response.body.result;
+          let returnData = this.getReturnData(place);
+              // return returnData object and PlaceResult object
+          if (returnData) {
+           this.$emit('placechanged', returnData, place);
+          }
+      });*/
     });
 
     this.geocoder = new google.maps.Geocoder();
