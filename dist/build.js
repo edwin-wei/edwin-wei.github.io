@@ -22374,11 +22374,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
       _this2.$http.get('https://maps.googleapis.com/maps/api/place/details/json', { params: params }).then(function (response) {
 
-        var place2 = response.body.result;
-        var returnData = _this2.getReturnData(place2);
+        var place3 = response.body.result;
+        var returnData = _this2.getReturnData(place3);
         // return returnData object and PlaceResult object
         if (returnData) {
-          _this2.$emit('placechanged', returnData, place2);
+          _this2.$emit('placechanged', returnData, place3);
         }
       });
     });
