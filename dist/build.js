@@ -22363,24 +22363,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return;
       }
 
-      var returnData = _this2.getReturnData(place);
+      /*let returnData = this.getReturnData(place);
       if (returnData) {
-        _this2.$emit('placechanged', returnData, place);
-      }
-      /*let params = {
-              key:'AIzaSyAsIb2Avx-pwZTllY2IyZ2yMIiolO9Hobw',
-              placeid: place1.place_id,
-              language: this.language
-      }
-      this.$http.get('https://maps.googleapis.com/maps/api/place/details/json', {params: params}).then (response => {
-          
-          let place = response.body.result;
-          let returnData = this.getReturnData(place);
-              // return returnData object and PlaceResult object
-          if (returnData) {
-           this.$emit('placechanged', returnData, place);
-          }
-      });*/
+          this.$emit('placechanged', returnData, place);
+      }*/
+      var params = {
+        key: 'AIzaSyAsIb2Avx-pwZTllY2IyZ2yMIiolO9Hobw',
+        placeid: place.place_id,
+        language: _this2.language
+      };
+      _this2.$http.get('https://maps.googleapis.com/maps/api/place/details/json', { params: params }).then(function (response) {
+
+        var place2 = response.body.result;
+        var returnData = _this2.getReturnData(place2);
+        // return returnData object and PlaceResult object
+        if (returnData) {
+          _this2.$emit('placechanged', returnData, place2);
+        }
+      });
     });
 
     this.geocoder = new google.maps.Geocoder();
